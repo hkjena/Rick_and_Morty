@@ -1,0 +1,24 @@
+a {
+  cursor: pointer;
+}
+
+#root > div > div.d-flex.mb-4 > input {
+  min-width: 200px;
+}
+.ccontainer{
+  gap:40px;
+}
+.card {
+  background-color: #faaca8;
+  border:none;
+  box-shadow: 0 0 6px rgb(255, 3, 3);
+  width: 310px;
+  background: linear-gradient(to bottom, #000428, #004e92);
+  color:white;
+}
+u{
+  background: -webkit-linear-gradient(45deg, #09009f, #00aeff 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: underline;
+}
