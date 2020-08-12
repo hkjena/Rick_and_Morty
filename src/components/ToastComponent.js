@@ -14,9 +14,8 @@ const ToastComponent = ({ show, setShow, errormsg }) => {
   );
 
   const notify = () => {
-    setTimeout(() => {
-      setShow(false);
-    }, 3000);
+    setShow(false);
+    setTimeout(() => {}, 3000);
     return toast.error(msg, {
       position: "bottom-left",
       autoClose: 3000

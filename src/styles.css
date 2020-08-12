@@ -5,20 +5,41 @@ a {
 #root > div > div.d-flex.mb-4 > input {
   min-width: 200px;
 }
-.ccontainer{
-  gap:40px;
+.ccontainer {
+  gap: 40px;
 }
 .card {
   background-color: #faaca8;
-  border:none;
+  border: none;
   box-shadow: 0 0 6px rgb(255, 3, 3);
   width: 310px;
   background: linear-gradient(to bottom, #000428, #004e92);
-  color:white;
+  color: white;
 }
-u{
+u {
   background: -webkit-linear-gradient(45deg, #09009f, #00aeff 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-decoration: underline;
+}
+
+/*scroll bar*/
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: -webkit-linear-gradient(45deg, #09009f, #00aeff 80%);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #000128, #004a92);
 }

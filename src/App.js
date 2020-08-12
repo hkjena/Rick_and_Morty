@@ -31,7 +31,7 @@ export default function App() {
   const handelSubmit = async (term) => {
     setTerm(term);
     setloading(true);
-    let response = await getEpisodes(term, currentPage, setError);
+    let response = await getEpisodes(term, 1, setError);
     if (!response) {
       setloading(false);
       setShow(true);
@@ -90,7 +90,7 @@ export default function App() {
   );
 }
 
-const updateUI = async (settotalPage, setEpisodes, setloading, data) => {
+const updateUI = (settotalPage, setEpisodes, setloading, data) => {
   const { info, results } = data;
   settotalPage(info.pages);
   setEpisodes(results);
