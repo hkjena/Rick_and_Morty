@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import "./styles.css";
-import "bootstrap/dist/css/bootstrap.css";
+import { ToastContainer, toast } from "react-toastify";
 
 import Pagination from "./components/Pagination";
 import Cardcontainer from "./components/Cardcontainer";
 import SearchBox from "./components/SearchBox";
 import Spinner from "./components/Spinner/Spinner";
 import getEpisodes from "./APIs/getEoisodes";
-import ToastComponent from "./components/ToastComponent";
+
+import "./styles.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   const [currentPage, setcurrentPage] = useState(1);
   const [totalPage, settotalPage] = useState(0);
   const [loading, setloading] = useState(false);
   const [episodes, setEpisodes] = useState([]);
-  const [show, setShow] = useState(false);
   const [term, setTerm] = useState("");
-  const [error, setError] = useState("");
   const [buttonvisibility, setbuttonvisibility] = useState(false);
 
   const handlePageChange = async (page) => {
@@ -24,17 +24,17 @@ export default function App() {
     setcurrentPage(page);
     let currentTerm = term;
     if (!buttonvisibility) currentTerm = "";
-    let response = await getEpisodes(currentTerm, page, setError);
+    let response = await getEpisodes(currentTerm, page);
     updateUI(settotalPage, setEpisodes, setloading, response.data);
   };
 
   const handelSubmit = async (term) => {
     setTerm(term);
     setloading(true);
-    let response = await getEpisodes(term, 1, setError);
+    let response = await getEpisodes(term, 1);
     if (!response) {
       setloading(false);
-      setShow(true);
+      toast.error("No Episode Found!");
       return;
     }
     updateUI(settotalPage, setEpisodes, setloading, response.data);
@@ -45,7 +45,7 @@ export default function App() {
   const getAllEpisode = async () => {
     setcurrentPage(1);
     setloading(true);
-    let response = await getEpisodes("", currentPage, setError);
+    let response = await getEpisodes("", currentPage);
     updateUI(settotalPage, setEpisodes, setloading, response.data);
     setbuttonvisibility(false);
   };
@@ -53,7 +53,7 @@ export default function App() {
   useEffect(() => {
     setloading(true);
     async function getData() {
-      let response = await getEpisodes(null, null, setError);
+      let response = await getEpisodes(null, null);
       updateUI(settotalPage, setEpisodes, setloading, response.data);
     }
     getData();
@@ -62,6 +62,16 @@ export default function App() {
   return (
     <>
       <div className="container">
+        <ToastContainer
+          position="bottom-left"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <h2 className="text-center mt-2">
           <u>The Rick and Morty</u>
         </h2>
@@ -84,7 +94,6 @@ export default function App() {
             />
           </>
         )}
-        <ToastComponent show={show} setShow={setShow} errormsg={error} />
       </div>
     </>
   );

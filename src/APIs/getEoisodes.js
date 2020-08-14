@@ -1,4 +1,5 @@
 import axios from "./axios";
+import { toast } from "react-toastify";
 
 const getEpisodes = async (term, currentPage = 1, setError) => {
   let response;
@@ -10,10 +11,9 @@ const getEpisodes = async (term, currentPage = 1, setError) => {
     }
   } catch (e) {
     if (e.message === "Network Error") {
-      setError(e.message);
+      toast.error("Network Error!");
     }
   }
-  response && setError("");
   return response;
 };
 

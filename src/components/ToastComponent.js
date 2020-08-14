@@ -25,8 +25,8 @@ const ToastComponent = ({ show, setShow, errormsg }) => {
   return (
     <div>
       <ToastContainer
-        position="top-right"
-        autoClose={5000}
+        position="bottom-left"
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
